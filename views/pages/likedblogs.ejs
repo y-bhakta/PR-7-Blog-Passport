@@ -1,0 +1,117 @@
+<%- include('../partials/header.ejs') %>
+  <!-- ============================================================== -->
+  <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">
+            <%= user.name %>'s Liked Blogs
+          </h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Liked Blogs
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12 d-flex flex-wrap">
+          <% if (typeof likeblogs !== 'undefined' && likeblogs.length) { %>
+            <% likeblogs.forEach((item) => { %>
+              <% if (item.likeuserid && item.likeuserid.toString() === user._id.toString()) { %>
+                <% let blogData = blog.find(b => b._id.toString() === item.likeblogid.toString()); %>
+                <% if (blogData) { %>
+              <div class="col-12 col-lg-6 px-2 py-2">
+                <div class="col-12">
+                  <div class="card1">
+                    <div class="card__shine"></div>
+                    <div class="card__glow"></div>
+                    <div class="card__content">
+                      <div style="--bg-color: #a78bfa" class="card__image">
+                        <img src="/<%= blogData.image %>" width="100%" alt="<%= blogData.title %>">
+                      </div>
+                      <div class="card__text">
+                        <p class="card__title">
+                          <%= blogData.title %>
+                        </p>
+                        <p class="card__title fw-normal">
+                          <%= blogData.category %>
+                        </p>
+                        <p class="card__description">
+                          <%= blogData.description %>
+                        </p>
+                        <p class="card__title fw-normal py-2">
+                          <% const date=new Date(blogData.createdAt); const formattedDate=date.getDate() + '/' +
+                            (date.getMonth()+1) + '/' + date.getFullYear(); %>
+                            <%= formattedDate %>
+                        </p>
+                      </div>
+                      <div class="card__footer">
+                        <% if (typeof allusers !== 'undefined' && allusers.length) { %>
+                          <% allusers.forEach((u)=>{ %>
+                            <% if(blogData.userID && blogData.userID.toString()===u._id.toString()){ %>
+                              <div class="card__price">By:- <%= u.name %>
+                              </div>
+                            <% } %>
+                          <% }) %>
+                        <% } %>
+                        <div>
+                          <a href="/unlike/<%= blogData._id %>/<%= user._id %>">
+                            <i class="fa-solid fa-heart heart-icon-like fs-3"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <% } %>
+              <% } %>
+            <% }) %>
+          <% } else { %>
+            <div class="p-3">No liked blogs yet.</div>
+          <% } %>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <%- include('../partials/footer.ejs') %>
