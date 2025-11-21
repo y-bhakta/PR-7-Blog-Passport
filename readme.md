@@ -30,7 +30,10 @@ A full-featured blog application built with **Node.js**, **Express.js**, and **M
 - **My Blogs**: Users can view only their own published blogs
 - **Edit Blog**: Update blog content and images
 - **Delete Blog**: Remove blogs with automatic image file cleanup
-- **Blog Metadata**: Each blog displays creation date, category, and author name
+  - **Blog Metadata**: Each blog displays creation date, category, and author name
+
+### 🔎 Filtering & Search
+- **Filter by Category**: Users can filter blogs by category from the All Blogs page.
 
 ### ❤️ Like System
 - **Like Blogs**: Users can like blogs from other authors
@@ -211,6 +214,17 @@ PR-7-Blog-Passport/
 - **My Blogs**: Go to `/my-blogs` to manage your blogs
 - **Author Info**: Each blog displays the author's name and creation date
 
+### Filtering & Search
+- Use the filtering controls on the All Blogs page to narrow results by category, author, date range, or keyword.
+- URL query parameters are supported. Example:
+
+```
+/view-blogs?category=Tech&author=alice&q=react&start=2025-01-01&end=2025-12-31
+```
+
+- Combine query parameters to apply multiple filters at once (e.g., category + keyword).
+- The UI displays active filters and provides a clear/reset option to remove all filters.
+
 ### 4. Editing & Deleting Blogs
 - In "My Blogs", click edit to modify blog content/image
 - Click delete to remove a blog (image is automatically deleted)
@@ -304,7 +318,7 @@ The application includes try-catch blocks for:
 
 ## Future Enhancements
 
-- Blog search and filtering
+- Saved filters & advanced presets (filtering already implemented: category, author, date-range, keyword)
 - Comments system
 - User profile pages
 - Blog sharing on social media

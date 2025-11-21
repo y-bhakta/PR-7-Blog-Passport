@@ -149,6 +149,51 @@ const blogctl={
             console.log(error);            
             return res.redirect('/view-blogs');
         }
+    },
+    async foodblogspage(req,res){
+        try{
+            let blogs=await Blogs.find({category:'Food'});
+            let allusers=await User.find({});
+            let likeblog=await LikedBlogs.find({});
+            return res.render('./pages/foodblogs.ejs',{
+                blogs,
+                allusers,
+                likeblog
+            });
+        }catch(error){
+            console.log(error);
+            return res.redirect('/view-blogs');
+        }
+    },
+    async lifestyleblogspage(req,res){
+        try{
+            let blogs=await Blogs.find({category:'Lifestyle'});
+            let allusers=await User.find({});
+            let likeblog=await LikedBlogs.find({});
+            return res.render('./pages/lifestyleblogs.ejs',{
+                blogs,
+                allusers,
+                likeblog
+            });
+        }catch(error){
+            console.log(error);
+            return res.redirect('/view-blogs');
+        }
+    },
+    async travelblogspage(req,res){
+        try{
+            let blogs=await Blogs.find({category:'Travel'});
+            let allusers=await User.find({});
+            let likeblog=await LikedBlogs.find({});
+            return res.render('./pages/travelbolgs.ejs',{
+                blogs,
+                allusers,
+                likeblog
+            });
+        }catch(error){
+            console.log(error);
+            return res.redirect('/view-blogs');
+        }
     }
 }
 export default blogctl;

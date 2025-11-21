@@ -14,5 +14,8 @@ router.get('/view-blogs',blogctl.viewblogPage);
 router.get('/likedblogs',blogctl.likedblogsPage)
 router.get('/like/:blogid/:userid',blogctl.likeblog);
 router.get('/unlike/:blogid/:userid',blogctl.unlikeblog);
+router.get('/food-blogs',blogctl.foodblogspage);
+router.get('/lifestyle-blogs',blogctl.lifestyleblogspage);
+router.get('/travel-blogs',blogctl.travelblogspage);
 
 export default router;
